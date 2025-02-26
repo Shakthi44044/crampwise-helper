@@ -15,12 +15,19 @@ interface BodyPartHighlight {
 const BodyMapViewer = () => {
   const [view, setView] = useState<'front' | 'back'>('front');
   const [highlightedParts, setHighlightedParts] = useState<BodyPartHighlight[]>([
-    { id: 'arms', name: 'Arms', active: false },
-    { id: 'legs', name: 'Legs', active: false },
-    { id: 'abdomen', name: 'Abdomen', active: false },
-    { id: 'chest', name: 'Chest', active: false },
+    { id: 'head', name: 'Head', active: false },
     { id: 'neck', name: 'Neck', active: false },
+    { id: 'shoulders', name: 'Shoulders', active: false },
+    { id: 'arms', name: 'Arms', active: false },
+    { id: 'hands', name: 'Hands', active: false },
+    { id: 'chest', name: 'Chest', active: false },
+    { id: 'abdomen', name: 'Abdomen', active: false },
     { id: 'back', name: 'Back', active: false },
+    { id: 'lowerBack', name: 'Lower Back', active: false },
+    { id: 'hips', name: 'Hips', active: false },
+    { id: 'legs', name: 'Legs', active: false },
+    { id: 'knees', name: 'Knees', active: false },
+    { id: 'feet', name: 'Feet', active: false },
   ]);
 
   const toggleView = () => {
@@ -42,102 +49,380 @@ const BodyMapViewer = () => {
       </div>
       
       <div className="relative h-[400px] mx-auto w-full max-w-[280px]">
-        {/* The human body SVG would go here - using a placeholder */}
-        <div className="w-full h-full bg-gray-100 rounded-lg flex items-center justify-center">
-          <svg
-            width="200"
-            height="380"
-            viewBox="0 0 200 380"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="transition-opacity duration-300"
-          >
-            {/* Simple body outline */}
-            <path
-              d="M100 30C113.807 30 125 18.8071 125 5C125 -8.80712 113.807 -20 100 -20C86.1929 -20 75 -8.80712 75 5C75 18.8071 86.1929 30 100 30Z"
-              fill="#E4E4E4"
-              stroke="#CCCCCC"
-              className="cursor-pointer hover:fill-medical-primary/30"
-              onClick={() => toggleBodyPart('neck')}
-            />
-            <path
-              d="M100 30L100 100L140 170L100 170L100 280L130 350L70 350L100 280L100 170L60 170L100 100L100 30Z"
-              fill="#E4E4E4"
-              stroke="#CCCCCC"
-            />
-            {/* Arms */}
-            <path
-              d="M60 170L20 120M140 170L180 120"
-              stroke="#CCCCCC"
-              strokeWidth="30"
-              strokeLinecap="round"
-              className="cursor-pointer hover:stroke-medical-primary/30"
-              onClick={() => toggleBodyPart('arms')}
-            />
-            {/* Legs */}
-            <path
-              d="M70 350L50 380M130 350L150 380"
-              stroke="#CCCCCC"
-              strokeWidth="30"
-              strokeLinecap="round"
-              className="cursor-pointer hover:stroke-medical-primary/30"
-              onClick={() => toggleBodyPart('legs')}
-            />
-            {/* Chest area */}
-            <rect
-              x="75"
-              y="50"
-              width="50"
-              height="50"
-              fill="transparent"
-              className="cursor-pointer hover:fill-medical-primary/30"
-              onClick={() => toggleBodyPart('chest')}
-            />
-            {/* Abdomen area */}
-            <rect
-              x="75"
-              y="115"
-              width="50"
-              height="50"
-              fill="transparent"
-              className="cursor-pointer hover:fill-medical-primary/30"
-              onClick={() => toggleBodyPart('abdomen')}
-            />
-            {/* Back area (only visible in back view) */}
-            {view === 'back' && (
+        <div className="w-full h-full bg-gray-50 rounded-lg flex items-center justify-center">
+          {view === 'front' ? (
+            <svg
+              width="200"
+              height="380"
+              viewBox="0 0 200 380"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="transition-opacity duration-300"
+            >
+              {/* Head */}
+              <ellipse
+                cx="100"
+                cy="30"
+                rx="25"
+                ry="30"
+                fill={highlightedParts.find(p => p.id === 'head')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('head')}
+              />
+              
+              {/* Neck */}
+              <rect
+                x="90"
+                y="60"
+                width="20"
+                height="15"
+                fill={highlightedParts.find(p => p.id === 'neck')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('neck')}
+              />
+              
+              {/* Torso */}
+              <path
+                d="M65 75 L135 75 L140 190 L60 190 Z"
+                fill="#E4E4E4"
+                stroke="#CCCCCC"
+              />
+              
+              {/* Shoulders */}
+              <path
+                d="M65 75 L40 90 M135 75 L160 90"
+                stroke={highlightedParts.find(p => p.id === 'shoulders')?.active ? "#1EAEDB90" : "#CCCCCC"}
+                strokeWidth="15"
+                strokeLinecap="round"
+                className="cursor-pointer hover:stroke-medical-primary/30"
+                onClick={() => toggleBodyPart('shoulders')}
+              />
+              
+              {/* Arms */}
+              <path
+                d="M40 90 L40 160 M160 90 L160 160"
+                stroke={highlightedParts.find(p => p.id === 'arms')?.active ? "#1EAEDB90" : "#CCCCCC"}
+                strokeWidth="15"
+                strokeLinecap="round"
+                className="cursor-pointer hover:stroke-medical-primary/30"
+                onClick={() => toggleBodyPart('arms')}
+              />
+              
+              {/* Hands */}
+              <circle
+                cx="40"
+                cy="175"
+                r="15"
+                fill={highlightedParts.find(p => p.id === 'hands')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('hands')}
+              />
+              <circle
+                cx="160"
+                cy="175"
+                r="15"
+                fill={highlightedParts.find(p => p.id === 'hands')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('hands')}
+              />
+              
+              {/* Chest */}
               <rect
                 x="75"
-                y="90"
+                y="85"
                 width="50"
-                height="100"
-                fill="transparent"
+                height="40"
+                fill={highlightedParts.find(p => p.id === 'chest')?.active ? "#1EAEDB50" : "transparent"}
+                stroke="transparent"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('chest')}
+              />
+              
+              {/* Abdomen */}
+              <rect
+                x="75"
+                y="125"
+                width="50"
+                height="65"
+                fill={highlightedParts.find(p => p.id === 'abdomen')?.active ? "#1EAEDB50" : "transparent"}
+                stroke="transparent"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('abdomen')}
+              />
+              
+              {/* Hips */}
+              <path
+                d="M60 190 L140 190 L130 220 L70 220 Z"
+                fill={highlightedParts.find(p => p.id === 'hips')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('hips')}
+              />
+              
+              {/* Legs */}
+              <rect
+                x="70"
+                y="220"
+                width="25"
+                height="110"
+                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('legs')}
+              />
+              <rect
+                x="105"
+                y="220"
+                width="25"
+                height="110"
+                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('legs')}
+              />
+              
+              {/* Knees */}
+              <ellipse
+                cx="82.5"
+                cy="280"
+                rx="12.5"
+                ry="10"
+                fill={highlightedParts.find(p => p.id === 'knees')?.active ? "#1EAEDB50" : "transparent"}
+                stroke="transparent"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('knees')}
+              />
+              <ellipse
+                cx="117.5"
+                cy="280"
+                rx="12.5"
+                ry="10"
+                fill={highlightedParts.find(p => p.id === 'knees')?.active ? "#1EAEDB50" : "transparent"}
+                stroke="transparent"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('knees')}
+              />
+              
+              {/* Feet */}
+              <path
+                d="M70 330 L70 350 L95 350 L95 330 Z"
+                fill={highlightedParts.find(p => p.id === 'feet')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('feet')}
+              />
+              <path
+                d="M105 330 L105 350 L130 350 L130 330 Z"
+                fill={highlightedParts.find(p => p.id === 'feet')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('feet')}
+              />
+            </svg>
+          ) : (
+            <svg
+              width="200"
+              height="380"
+              viewBox="0 0 200 380"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="transition-opacity duration-300"
+            >
+              {/* Head - back view */}
+              <ellipse
+                cx="100"
+                cy="30"
+                rx="25"
+                ry="30"
+                fill={highlightedParts.find(p => p.id === 'head')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('head')}
+              />
+              
+              {/* Neck */}
+              <rect
+                x="90"
+                y="60"
+                width="20"
+                height="15"
+                fill={highlightedParts.find(p => p.id === 'neck')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('neck')}
+              />
+              
+              {/* Torso - back view */}
+              <path
+                d="M65 75 L135 75 L140 190 L60 190 Z"
+                fill="#E4E4E4"
+                stroke="#CCCCCC"
+              />
+              
+              {/* Shoulders - back view */}
+              <path
+                d="M65 75 L40 90 M135 75 L160 90"
+                stroke={highlightedParts.find(p => p.id === 'shoulders')?.active ? "#1EAEDB90" : "#CCCCCC"}
+                strokeWidth="15"
+                strokeLinecap="round"
+                className="cursor-pointer hover:stroke-medical-primary/30"
+                onClick={() => toggleBodyPart('shoulders')}
+              />
+              
+              {/* Arms - back view */}
+              <path
+                d="M40 90 L40 160 M160 90 L160 160"
+                stroke={highlightedParts.find(p => p.id === 'arms')?.active ? "#1EAEDB90" : "#CCCCCC"}
+                strokeWidth="15"
+                strokeLinecap="round"
+                className="cursor-pointer hover:stroke-medical-primary/30"
+                onClick={() => toggleBodyPart('arms')}
+              />
+              
+              {/* Hands - back view */}
+              <circle
+                cx="40"
+                cy="175"
+                r="15"
+                fill={highlightedParts.find(p => p.id === 'hands')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('hands')}
+              />
+              <circle
+                cx="160"
+                cy="175"
+                r="15"
+                fill={highlightedParts.find(p => p.id === 'hands')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('hands')}
+              />
+              
+              {/* Upper Back */}
+              <rect
+                x="75"
+                y="85"
+                width="50"
+                height="50"
+                fill={highlightedParts.find(p => p.id === 'back')?.active ? "#1EAEDB50" : "transparent"}
+                stroke="transparent"
                 className="cursor-pointer hover:fill-medical-primary/30"
                 onClick={() => toggleBodyPart('back')}
               />
-            )}
-          </svg>
+              
+              {/* Lower Back */}
+              <rect
+                x="75"
+                y="135"
+                width="50"
+                height="55"
+                fill={highlightedParts.find(p => p.id === 'lowerBack')?.active ? "#1EAEDB50" : "transparent"}
+                stroke="transparent"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('lowerBack')}
+              />
+              
+              {/* Hips - back view */}
+              <path
+                d="M60 190 L140 190 L130 220 L70 220 Z"
+                fill={highlightedParts.find(p => p.id === 'hips')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('hips')}
+              />
+              
+              {/* Legs - back view */}
+              <rect
+                x="70"
+                y="220"
+                width="25"
+                height="110"
+                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('legs')}
+              />
+              <rect
+                x="105"
+                y="220"
+                width="25"
+                height="110"
+                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('legs')}
+              />
+              
+              {/* Knees - back view */}
+              <ellipse
+                cx="82.5"
+                cy="280"
+                rx="12.5"
+                ry="10"
+                fill={highlightedParts.find(p => p.id === 'knees')?.active ? "#1EAEDB50" : "transparent"}
+                stroke="transparent"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('knees')}
+              />
+              <ellipse
+                cx="117.5"
+                cy="280"
+                rx="12.5"
+                ry="10"
+                fill={highlightedParts.find(p => p.id === 'knees')?.active ? "#1EAEDB50" : "transparent"}
+                stroke="transparent"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('knees')}
+              />
+              
+              {/* Feet - back view */}
+              <path
+                d="M70 330 L70 350 L95 350 L95 330 Z"
+                fill={highlightedParts.find(p => p.id === 'feet')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('feet')}
+              />
+              <path
+                d="M105 330 L105 350 L130 350 L130 330 Z"
+                fill={highlightedParts.find(p => p.id === 'feet')?.active ? "#1EAEDB50" : "#E4E4E4"}
+                stroke="#CCCCCC"
+                className="cursor-pointer hover:fill-medical-primary/30"
+                onClick={() => toggleBodyPart('feet')}
+              />
+            </svg>
+          )}
         </div>
         
         {/* Navigation buttons */}
         <button 
           onClick={toggleView}
           className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow border border-gray-200"
+          aria-label="View front side"
         >
           <ArrowLeft size={16} />
         </button>
         <button 
           onClick={toggleView}
           className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow border border-gray-200"
+          aria-label="View back side"
         >
           <ArrowRight size={16} />
         </button>
         
-        {/* Body part list */}
+        {/* Body part selection hint */}
         <div className="absolute right-[-80px] top-0 space-y-2">
-          {/* This would show different body regions */}
-          <button className="w-8 h-8 flex items-center justify-center bg-white rounded-full shadow border border-gray-200">
+          <button className="w-8 h-8 flex items-center justify-center bg-medical-primary text-white rounded-full shadow">
             <Plus size={16} />
           </button>
+          <div className="absolute left-10 top-0 bg-white p-2 rounded shadow-md text-xs w-28 border border-gray-200">
+            Click on body parts to select areas with cramps
+          </div>
         </div>
       </div>
       
