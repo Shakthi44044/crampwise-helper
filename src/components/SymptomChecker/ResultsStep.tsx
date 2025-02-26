@@ -98,19 +98,52 @@ const ResultsStep = ({ selectedSymptoms, age, gender }: ResultsStepProps) => {
                     <ul className="text-sm space-y-1">
                       {condition.symptoms.map((symptom, index) => (
                         <li key={index} className="flex items-start">
-                          <CheckIcon size={14} className
+                          <CheckIcon size={14} className="text-medical-primary mr-2 mt-1 flex-shrink-0" />
+                          <span>{symptom}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-medium text-gray-700 mb-1">Potential treatments:</h4>
+                    <ul className="text-sm space-y-1">
+                      {condition.treatments.map((treatment, index) => (
+                        <li key={index} className="flex items-start">
+                          <CheckIcon size={14} className="text-green-500 mr-2 mt-1 flex-shrink-0" />
+                          <span>{treatment}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="flex items-center justify-center p-8 border border-dashed border-gray-300 rounded-lg bg-gray-50">
+          <div className="text-center">
+            <div className="mx-auto h-12 w-12 text-gray-400 mb-2">
+              <Info size={24} />
+            </div>
+            <p className="text-gray-500">No matching conditions found</p>
+            <p className="text-gray-400 text-sm mt-1">Try selecting different symptoms</p>
+          </div>
+        </div>
+      )}
+      
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="flex text-sm text-blue-800">
+          <Info size={16} className="flex-shrink-0 mr-2 mt-0.5" />
+          <p>
+            <strong>Important:</strong> This tool provides general information only and is not a substitute for professional medical advice. 
+            If you're experiencing severe or persistent symptoms, please consult a healthcare professional.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-If there's knowledge, context or custom instructions you want to include in every edit in this project, set it below.
-
-<lov-actions>
-<lov-knowledge>
-</lov-actions>
-
-If your project requires backend functionality for storing user data and symptom information, you can use the Supabase menu on the top right to connect your project to Supabase.
-<lov-actions>
-<lov-message-prompt message="Tell me more about Supabase">Learn more about Supabase</lov-message-prompt>
-</lov-actions>
-
-<lov-actions>
-<lov-link url="https://docs.lovable.dev/">Visit docs</lov-link>
-</lov-actions>
+export default ResultsStep;
