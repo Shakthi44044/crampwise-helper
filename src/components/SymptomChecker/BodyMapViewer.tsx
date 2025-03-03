@@ -51,348 +51,576 @@ const BodyMapViewer = () => {
       <div className="relative h-[400px] mx-auto w-full max-w-[280px]">
         <div className="w-full h-full bg-gray-50 rounded-lg flex items-center justify-center">
           {view === 'front' ? (
-            <svg
-              width="200"
-              height="380"
-              viewBox="0 0 200 380"
-              fill="none"
+            <svg 
+              width="200" 
+              height="380" 
+              viewBox="0 0 200 380" 
+              fill="none" 
               xmlns="http://www.w3.org/2000/svg"
               className="transition-opacity duration-300"
             >
-              {/* Head */}
-              <ellipse
-                cx="100"
-                cy="30"
-                rx="25"
-                ry="30"
-                fill={highlightedParts.find(p => p.id === 'head')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
+              {/* Head - Frontal View */}
+              <path
+                d="M100 15 C85 15, 75 30, 75 45 C75 60, 85 70, 100 70 C115 70, 125 60, 125 45 C125 30, 115 15, 100 15"
+                fill={highlightedParts.find(p => p.id === 'head')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('head')}
               />
-              
-              {/* Neck */}
-              <rect
-                x="90"
-                y="60"
-                width="20"
-                height="15"
-                fill={highlightedParts.find(p => p.id === 'neck')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
+              <path
+                d="M87 35 C90 40, 95 42, 100 42 C105 42, 110 40, 113 35"
+                fill="none"
+                stroke="#B28B6B"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <ellipse cx="90" cy="30" rx="2" ry="3" fill="#66320E" className="pointer-events-none" />
+              <ellipse cx="110" cy="30" rx="2" ry="3" fill="#66320E" className="pointer-events-none" />
+
+              {/* Neck - Frontal View */}
+              <path
+                d="M90 70 L90 80 L110 80 L110 70"
+                fill={highlightedParts.find(p => p.id === 'neck')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('neck')}
               />
-              
-              {/* Torso */}
+
+              {/* Shoulders - Frontal View */}
               <path
-                d="M65 75 L135 75 L140 190 L60 190 Z"
-                fill="#E4E4E4"
-                stroke="#CCCCCC"
-              />
-              
-              {/* Shoulders */}
-              <path
-                d="M65 75 L40 90 M135 75 L160 90"
-                stroke={highlightedParts.find(p => p.id === 'shoulders')?.active ? "#1EAEDB90" : "#CCCCCC"}
-                strokeWidth="15"
-                strokeLinecap="round"
-                className="cursor-pointer hover:stroke-medical-primary/30"
+                d="M65 85 C75 80, 85 80, 90 80 L110 80 C115 80, 125 80, 135 85"
+                fill={highlightedParts.find(p => p.id === 'shoulders')?.active ? "#1EAEDB80" : "#D05D3B"}
+                stroke="#A04931"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('shoulders')}
               />
-              
-              {/* Arms */}
+
+              {/* Chest - Frontal View */}
               <path
-                d="M40 90 L40 160 M160 90 L160 160"
-                stroke={highlightedParts.find(p => p.id === 'arms')?.active ? "#1EAEDB90" : "#CCCCCC"}
-                strokeWidth="15"
-                strokeLinecap="round"
-                className="cursor-pointer hover:stroke-medical-primary/30"
-                onClick={() => toggleBodyPart('arms')}
-              />
-              
-              {/* Hands */}
-              <circle
-                cx="40"
-                cy="175"
-                r="15"
-                fill={highlightedParts.find(p => p.id === 'hands')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
-                onClick={() => toggleBodyPart('hands')}
-              />
-              <circle
-                cx="160"
-                cy="175"
-                r="15"
-                fill={highlightedParts.find(p => p.id === 'hands')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
-                onClick={() => toggleBodyPart('hands')}
-              />
-              
-              {/* Chest */}
-              <rect
-                x="75"
-                y="85"
-                width="50"
-                height="40"
-                fill={highlightedParts.find(p => p.id === 'chest')?.active ? "#1EAEDB50" : "transparent"}
-                stroke="transparent"
-                className="cursor-pointer hover:fill-medical-primary/30"
+                d="M90 80 L90 130 L110 130 L110 80"
+                fill={highlightedParts.find(p => p.id === 'chest')?.active ? "#1EAEDB80" : "#D05D3B"}
+                stroke="#A04931"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('chest')}
               />
-              
-              {/* Abdomen */}
-              <rect
-                x="75"
-                y="125"
-                width="50"
-                height="65"
-                fill={highlightedParts.find(p => p.id === 'abdomen')?.active ? "#1EAEDB50" : "transparent"}
-                stroke="transparent"
-                className="cursor-pointer hover:fill-medical-primary/30"
+              {/* Muscle definition lines for chest */}
+              <path
+                d="M95 95 C98 100, 102 100, 105 95"
+                fill="none"
+                stroke="#A04931"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M92 110 C97 115, 103 115, 108 110"
+                fill="none"
+                stroke="#A04931"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+
+              {/* Arms - Frontal View */}
+              <path
+                d="M65 85 C60 95, 55 115, 50 135 C48 145, 47 155, 45 165"
+                fill={highlightedParts.find(p => p.id === 'arms')?.active ? "#1EAEDB80" : "#D05D3B"}
+                stroke="#A04931"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('arms')}
+              />
+              <path
+                d="M135 85 C140 95, 145 115, 150 135 C152 145, 153 155, 155 165"
+                fill={highlightedParts.find(p => p.id === 'arms')?.active ? "#1EAEDB80" : "#D05D3B"}
+                stroke="#A04931"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('arms')}
+              />
+              {/* Muscle definition for arms */}
+              <path
+                d="M55 115 C58 118, 60 120, 58 125"
+                fill="none"
+                stroke="#A04931"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M145 115 C142 118, 140 120, 142 125"
+                fill="none"
+                stroke="#A04931"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+
+              {/* Hands - Frontal View */}
+              <path
+                d="M45 165 C43 175, 40 180, 38 185 C35 190, 40 195, 45 193 C50 191, 53 185, 55 180"
+                fill={highlightedParts.find(p => p.id === 'hands')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('hands')}
+              />
+              <path
+                d="M155 165 C157 175, 160 180, 162 185 C165 190, 160 195, 155 193 C150 191, 147 185, 145 180"
+                fill={highlightedParts.find(p => p.id === 'hands')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('hands')}
+              />
+
+              {/* Abdomen - Frontal View */}
+              <path
+                d="M90 130 L90 190 L110 190 L110 130"
+                fill={highlightedParts.find(p => p.id === 'abdomen')?.active ? "#1EAEDB80" : "#D05D3B"}
+                stroke="#A04931"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('abdomen')}
               />
-              
-              {/* Hips */}
+              {/* Muscle definition for abs */}
               <path
-                d="M60 190 L140 190 L130 220 L70 220 Z"
-                fill={highlightedParts.find(p => p.id === 'hips')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
+                d="M95 145 L105 145"
+                fill="none"
+                stroke="#A04931"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M95 160 L105 160"
+                fill="none"
+                stroke="#A04931"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M95 175 L105 175"
+                fill="none"
+                stroke="#A04931"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M100 145 L100 175"
+                fill="none"
+                stroke="#A04931"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+
+              {/* Hips - Frontal View */}
+              <path
+                d="M90 190 C85 195, 80 200, 75 210 L125 210 C120 200, 115 195, 110 190"
+                fill={highlightedParts.find(p => p.id === 'hips')?.active ? "#1EAEDB80" : "#3A6EA0"}
+                stroke="#28466A"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('hips')}
               />
-              
-              {/* Legs */}
-              <rect
-                x="70"
-                y="220"
-                width="25"
-                height="110"
-                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
-                onClick={() => toggleBodyPart('legs')}
-              />
-              <rect
-                x="105"
-                y="220"
-                width="25"
-                height="110"
-                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
-                onClick={() => toggleBodyPart('legs')}
-              />
-              
-              {/* Knees */}
-              <ellipse
-                cx="82.5"
-                cy="280"
-                rx="12.5"
-                ry="10"
-                fill={highlightedParts.find(p => p.id === 'knees')?.active ? "#1EAEDB50" : "transparent"}
-                stroke="transparent"
-                className="cursor-pointer hover:fill-medical-primary/30"
-                onClick={() => toggleBodyPart('knees')}
-              />
-              <ellipse
-                cx="117.5"
-                cy="280"
-                rx="12.5"
-                ry="10"
-                fill={highlightedParts.find(p => p.id === 'knees')?.active ? "#1EAEDB50" : "transparent"}
-                stroke="transparent"
-                className="cursor-pointer hover:fill-medical-primary/30"
-                onClick={() => toggleBodyPart('knees')}
-              />
-              
-              {/* Feet */}
+
+              {/* Legs - Frontal View */}
               <path
-                d="M70 330 L70 350 L95 350 L95 330 Z"
-                fill={highlightedParts.find(p => p.id === 'feet')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
+                d="M75 210 L70 280 L87 280 L90 210"
+                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB80" : "#3A6EA0"}
+                stroke="#28466A"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('legs')}
+              />
+              <path
+                d="M110 210 L113 280 L130 280 L125 210"
+                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB80" : "#3A6EA0"}
+                stroke="#28466A"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('legs')}
+              />
+              {/* Muscle definition for quads */}
+              <path
+                d="M77 240 C80 245, 85 245, 87 240"
+                fill="none"
+                stroke="#28466A"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M113 240 C115 245, 120 245, 123 240"
+                fill="none"
+                stroke="#28466A"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+
+              {/* Knees - Frontal View */}
+              <ellipse
+                cx="78.5"
+                cy="290"
+                rx="8.5"
+                ry="10"
+                fill={highlightedParts.find(p => p.id === 'knees')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('knees')}
+              />
+              <ellipse
+                cx="121.5"
+                cy="290"
+                rx="8.5"
+                ry="10"
+                fill={highlightedParts.find(p => p.id === 'knees')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('knees')}
+              />
+              
+              {/* Lower Legs - Frontal View */}
+              <path
+                d="M77 300 L75 350 L85 350 L87 300"
+                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB80" : "#3A6EA0"}
+                stroke="#28466A"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('legs')}
+              />
+              <path
+                d="M113 300 L115 350 L125 350 L123 300"
+                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB80" : "#3A6EA0"}
+                stroke="#28466A"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('legs')}
+              />
+              {/* Muscle definition for calves */}
+              <path
+                d="M78 320 C80 325, 83 325, 85 320"
+                fill="none"
+                stroke="#28466A"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M115 320 C117 325, 120 325, 123 320"
+                fill="none"
+                stroke="#28466A"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              
+              {/* Feet - Frontal View */}
+              <path
+                d="M75 350 L70 360 L90 360 L85 350"
+                fill={highlightedParts.find(p => p.id === 'feet')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('feet')}
               />
               <path
-                d="M105 330 L105 350 L130 350 L130 330 Z"
-                fill={highlightedParts.find(p => p.id === 'feet')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
+                d="M115 350 L110 360 L130 360 L125 350"
+                fill={highlightedParts.find(p => p.id === 'feet')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('feet')}
               />
             </svg>
           ) : (
-            <svg
-              width="200"
-              height="380"
-              viewBox="0 0 200 380"
-              fill="none"
+            <svg 
+              width="200" 
+              height="380" 
+              viewBox="0 0 200 380" 
+              fill="none" 
               xmlns="http://www.w3.org/2000/svg"
               className="transition-opacity duration-300"
             >
-              {/* Head - back view */}
-              <ellipse
-                cx="100"
-                cy="30"
-                rx="25"
-                ry="30"
-                fill={highlightedParts.find(p => p.id === 'head')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
+              {/* Head - Back View */}
+              <path
+                d="M100 15 C85 15, 75 30, 75 45 C75 60, 85 70, 100 70 C115 70, 125 60, 125 45 C125 30, 115 15, 100 15"
+                fill={highlightedParts.find(p => p.id === 'head')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('head')}
               />
               
-              {/* Neck */}
-              <rect
-                x="90"
-                y="60"
-                width="20"
-                height="15"
-                fill={highlightedParts.find(p => p.id === 'neck')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
+              {/* Neck - Back View */}
+              <path
+                d="M90 70 L90 80 L110 80 L110 70"
+                fill={highlightedParts.find(p => p.id === 'neck')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('neck')}
               />
-              
-              {/* Torso - back view */}
+
+              {/* Shoulders - Back View */}
               <path
-                d="M65 75 L135 75 L140 190 L60 190 Z"
-                fill="#E4E4E4"
-                stroke="#CCCCCC"
-              />
-              
-              {/* Shoulders - back view */}
-              <path
-                d="M65 75 L40 90 M135 75 L160 90"
-                stroke={highlightedParts.find(p => p.id === 'shoulders')?.active ? "#1EAEDB90" : "#CCCCCC"}
-                strokeWidth="15"
-                strokeLinecap="round"
-                className="cursor-pointer hover:stroke-medical-primary/30"
+                d="M65 85 C75 80, 85 80, 90 80 L110 80 C115 80, 125 80, 135 85"
+                fill={highlightedParts.find(p => p.id === 'shoulders')?.active ? "#1EAEDB80" : "#B8461B"}
+                stroke="#8F3717"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('shoulders')}
               />
-              
-              {/* Arms - back view */}
+
+              {/* Back - Upper */}
               <path
-                d="M40 90 L40 160 M160 90 L160 160"
-                stroke={highlightedParts.find(p => p.id === 'arms')?.active ? "#1EAEDB90" : "#CCCCCC"}
-                strokeWidth="15"
-                strokeLinecap="round"
-                className="cursor-pointer hover:stroke-medical-primary/30"
-                onClick={() => toggleBodyPart('arms')}
-              />
-              
-              {/* Hands - back view */}
-              <circle
-                cx="40"
-                cy="175"
-                r="15"
-                fill={highlightedParts.find(p => p.id === 'hands')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
-                onClick={() => toggleBodyPart('hands')}
-              />
-              <circle
-                cx="160"
-                cy="175"
-                r="15"
-                fill={highlightedParts.find(p => p.id === 'hands')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
-                onClick={() => toggleBodyPart('hands')}
-              />
-              
-              {/* Upper Back */}
-              <rect
-                x="75"
-                y="85"
-                width="50"
-                height="50"
-                fill={highlightedParts.find(p => p.id === 'back')?.active ? "#1EAEDB50" : "transparent"}
-                stroke="transparent"
-                className="cursor-pointer hover:fill-medical-primary/30"
+                d="M90 80 L90 130 L110 130 L110 80"
+                fill={highlightedParts.find(p => p.id === 'back')?.active ? "#1EAEDB80" : "#B8461B"}
+                stroke="#8F3717"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('back')}
               />
-              
+              {/* Muscle definition lines for upper back */}
+              <path
+                d="M95 90 L105 90"
+                fill="none"
+                stroke="#8F3717"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M93 105 L107 105"
+                fill="none"
+                stroke="#8F3717"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M90 90 L90 130"
+                fill="none"
+                stroke="#8F3717"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M110 90 L110 130"
+                fill="none"
+                stroke="#8F3717"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M100 80 L100 130"
+                fill="none"
+                stroke="#8F3717"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+
+              {/* Arms - Back View */}
+              <path
+                d="M65 85 C60 95, 55 115, 50 135 C48 145, 47 155, 45 165"
+                fill={highlightedParts.find(p => p.id === 'arms')?.active ? "#1EAEDB80" : "#B8461B"}
+                stroke="#8F3717"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('arms')}
+              />
+              <path
+                d="M135 85 C140 95, 145 115, 150 135 C152 145, 153 155, 155 165"
+                fill={highlightedParts.find(p => p.id === 'arms')?.active ? "#1EAEDB80" : "#B8461B"}
+                stroke="#8F3717"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('arms')}
+              />
+              {/* Tricep muscle definition */}
+              <path
+                d="M52 120 C55 125, 58 130, 55 140"
+                fill="none"
+                stroke="#8F3717"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M148 120 C145 125, 142 130, 145 140"
+                fill="none"
+                stroke="#8F3717"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+
+              {/* Hands - Back View */}
+              <path
+                d="M45 165 C43 175, 40 180, 38 185 C35 190, 40 195, 45 193 C50 191, 53 185, 55 180"
+                fill={highlightedParts.find(p => p.id === 'hands')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('hands')}
+              />
+              <path
+                d="M155 165 C157 175, 160 180, 162 185 C165 190, 160 195, 155 193 C150 191, 147 185, 145 180"
+                fill={highlightedParts.find(p => p.id === 'hands')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('hands')}
+              />
+
               {/* Lower Back */}
-              <rect
-                x="75"
-                y="135"
-                width="50"
-                height="55"
-                fill={highlightedParts.find(p => p.id === 'lowerBack')?.active ? "#1EAEDB50" : "transparent"}
-                stroke="transparent"
-                className="cursor-pointer hover:fill-medical-primary/30"
+              <path
+                d="M90 130 L90 190 L110 190 L110 130"
+                fill={highlightedParts.find(p => p.id === 'lowerBack')?.active ? "#1EAEDB80" : "#B8461B"}
+                stroke="#8F3717"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('lowerBack')}
               />
-              
-              {/* Hips - back view */}
+              {/* Muscle definition for lower back */}
               <path
-                d="M60 190 L140 190 L130 220 L70 220 Z"
-                fill={highlightedParts.find(p => p.id === 'hips')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
+                d="M95 145 L105 145"
+                fill="none"
+                stroke="#8F3717"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M95 160 L105 160"
+                fill="none"
+                stroke="#8F3717"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M95 175 L105 175"
+                fill="none"
+                stroke="#8F3717"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M100 130 L100 190"
+                fill="none"
+                stroke="#8F3717"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+
+              {/* Hips - Back View */}
+              <path
+                d="M90 190 C85 195, 80 200, 75 210 L125 210 C120 200, 115 195, 110 190"
+                fill={highlightedParts.find(p => p.id === 'hips')?.active ? "#1EAEDB80" : "#2F5680"}
+                stroke="#1E3553"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('hips')}
               />
-              
-              {/* Legs - back view */}
-              <rect
-                x="70"
-                y="220"
-                width="25"
-                height="110"
-                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
-                onClick={() => toggleBodyPart('legs')}
-              />
-              <rect
-                x="105"
-                y="220"
-                width="25"
-                height="110"
-                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
-                onClick={() => toggleBodyPart('legs')}
-              />
-              
-              {/* Knees - back view */}
-              <ellipse
-                cx="82.5"
-                cy="280"
-                rx="12.5"
-                ry="10"
-                fill={highlightedParts.find(p => p.id === 'knees')?.active ? "#1EAEDB50" : "transparent"}
-                stroke="transparent"
-                className="cursor-pointer hover:fill-medical-primary/30"
-                onClick={() => toggleBodyPart('knees')}
-              />
-              <ellipse
-                cx="117.5"
-                cy="280"
-                rx="12.5"
-                ry="10"
-                fill={highlightedParts.find(p => p.id === 'knees')?.active ? "#1EAEDB50" : "transparent"}
-                stroke="transparent"
-                className="cursor-pointer hover:fill-medical-primary/30"
-                onClick={() => toggleBodyPart('knees')}
-              />
-              
-              {/* Feet - back view */}
+
+              {/* Legs - Back View */}
               <path
-                d="M70 330 L70 350 L95 350 L95 330 Z"
-                fill={highlightedParts.find(p => p.id === 'feet')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
+                d="M75 210 L70 280 L87 280 L90 210"
+                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB80" : "#2F5680"}
+                stroke="#1E3553"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('legs')}
+              />
+              <path
+                d="M110 210 L113 280 L130 280 L125 210"
+                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB80" : "#2F5680"}
+                stroke="#1E3553"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('legs')}
+              />
+              {/* Hamstring muscle definition */}
+              <path
+                d="M77 240 C80 245, 85 245, 87 240"
+                fill="none"
+                stroke="#1E3553"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M113 240 C115 245, 120 245, 123 240"
+                fill="none"
+                stroke="#1E3553"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+
+              {/* Knees - Back View */}
+              <ellipse
+                cx="78.5"
+                cy="290"
+                rx="8.5"
+                ry="10"
+                fill={highlightedParts.find(p => p.id === 'knees')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('knees')}
+              />
+              <ellipse
+                cx="121.5"
+                cy="290"
+                rx="8.5"
+                ry="10"
+                fill={highlightedParts.find(p => p.id === 'knees')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('knees')}
+              />
+              
+              {/* Lower Legs - Back View */}
+              <path
+                d="M77 300 L75 350 L85 350 L87 300"
+                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB80" : "#2F5680"}
+                stroke="#1E3553"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('legs')}
+              />
+              <path
+                d="M113 300 L115 350 L125 350 L123 300"
+                fill={highlightedParts.find(p => p.id === 'legs')?.active ? "#1EAEDB80" : "#2F5680"}
+                stroke="#1E3553"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
+                onClick={() => toggleBodyPart('legs')}
+              />
+              {/* Calf muscle definition */}
+              <path
+                d="M77 315 C80 325, 83 330, 85 325"
+                fill="none"
+                stroke="#1E3553"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              <path
+                d="M123 315 C120 325, 117 330, 115 325"
+                fill="none"
+                stroke="#1E3553"
+                strokeWidth="0.7"
+                className="pointer-events-none"
+              />
+              
+              {/* Feet - Back View */}
+              <path
+                d="M75 350 L70 360 L90 360 L85 350"
+                fill={highlightedParts.find(p => p.id === 'feet')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('feet')}
               />
               <path
-                d="M105 330 L105 350 L130 350 L130 330 Z"
-                fill={highlightedParts.find(p => p.id === 'feet')?.active ? "#1EAEDB50" : "#E4E4E4"}
-                stroke="#CCCCCC"
-                className="cursor-pointer hover:fill-medical-primary/30"
+                d="M115 350 L110 360 L130 360 L125 350"
+                fill={highlightedParts.find(p => p.id === 'feet')?.active ? "#1EAEDB80" : "#E8B496"}
+                stroke="#B28B6B"
+                strokeWidth="1"
+                className="cursor-pointer hover:fill-medical-primary/50"
                 onClick={() => toggleBodyPart('feet')}
               />
             </svg>
