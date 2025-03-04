@@ -4,14 +4,24 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 interface BasicInfoStepProps {
-  age: number;
+  age: number | null;
   setAge: (age: number) => void;
   gender: string;
   setGender: (gender: string) => void;
+  patientName: string;
+  setPatientName: (name: string) => void;
+  onShowResults: () => void;
 }
 
-const BasicInfoStep = ({ age, setAge, gender, setGender }: BasicInfoStepProps) => {
-  const [patientName, setPatientName] = useState("");
+const BasicInfoStep = ({
+  age,
+  setAge,
+  gender,
+  setGender,
+  patientName,
+  setPatientName,
+  onShowResults,
+}: BasicInfoStepProps) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
   useEffect(() => {
@@ -91,6 +101,15 @@ const BasicInfoStep = ({ age, setAge, gender, setGender }: BasicInfoStepProps) =
             {currentDateTime.toLocaleString()}
           </div>
         </div>
+      </div>
+
+      <div className="text-center mt-6">
+        <Button
+          onClick={onShowResults}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
+        >
+          Show Results
+        </Button>
       </div>
     </div>
   );
