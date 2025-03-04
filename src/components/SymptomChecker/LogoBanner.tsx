@@ -7,7 +7,7 @@ const LogoBanner = () => {
         <span className="text-medical-dark">wise</span>
         <span className="ml-3 text-2xl text-gray-800">Symptom Checker</span>
       </h1>
-      <span className="ml-3 text-medical-primary font-medium">WITH BODY MAP</span>
+      
     </div>
   );
 };

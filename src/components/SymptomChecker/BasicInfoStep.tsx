@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,6 +11,17 @@ interface BasicInfoStepProps {
 }
 
 const BasicInfoStep = ({ age, setAge, gender, setGender }: BasicInfoStepProps) => {
+  const [patientName, setPatientName] = useState("");
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="space-y-6 animate-slide-up">
       <div className="text-center">
@@ -19,8 +29,20 @@ const BasicInfoStep = ({ age, setAge, gender, setGender }: BasicInfoStepProps) =
           Identify possible conditions and treatment related to your symptoms.
         </h2>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-3">
+          <Label htmlFor="patientName" className="text-base">Patient Name</Label>
+          <Input 
+            id="patientName"
+            type="text"
+            value={patientName}
+            onChange={(e) => setPatientName(e.target.value)}
+            className="w-full h-12 text-lg"
+            placeholder="Enter your name"
+          />
+        </div>
+
         <div className="space-y-3">
           <Label htmlFor="age" className="text-base">Age</Label>
           <Input 
@@ -34,7 +56,7 @@ const BasicInfoStep = ({ age, setAge, gender, setGender }: BasicInfoStepProps) =
             placeholder="Enter your age"
           />
         </div>
-        
+
         <div className="space-y-3">
           <Label className="text-base">Sex</Label>
           <div className="flex gap-2">
@@ -60,6 +82,13 @@ const BasicInfoStep = ({ age, setAge, gender, setGender }: BasicInfoStepProps) =
             >
               Female
             </Button>
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <Label className="text-base">Date and Time</Label>
+          <div className="w-full h-12 text-lg flex items-center">
+            {currentDateTime.toLocaleString()}
           </div>
         </div>
       </div>
