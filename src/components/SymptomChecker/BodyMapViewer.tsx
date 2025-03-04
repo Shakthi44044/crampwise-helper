@@ -17,6 +17,12 @@ interface BodyPart {
   strokeColor: string;
 }
 
+interface BodyPartHighlight {
+  id: string;
+  name: string;
+  active: boolean;
+}
+
 const BodyMapViewer = () => {
   const [view, setView] = useState<'front' | 'back'>('front');
   const [highlightedParts, setHighlightedParts] = useState<BodyPartHighlight[]>([
@@ -696,11 +702,11 @@ const BodyMapViewer = () => {
 
       {/* Selected body parts */}
       <div className="mt-4">
-        {bodyParts.filter(part => part.active).length > 0 ? (
+        {highlightedParts.filter(part => part.active).length > 0 ? (
           <div className="space-y-2">
             <h3 className="text-sm font-medium text-gray-700">Selected areas:</h3>
             <div className="flex flex-wrap gap-2">
-              {bodyParts
+              {highlightedParts
                 .filter(part => part.active)
                 .map(part => (
                   <span 
