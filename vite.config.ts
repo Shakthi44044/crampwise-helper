@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
   base:"/crampwise-helper/",
   server: {
     host: "::",
-    port: 8080,
+    port: 3002,
   },
   plugins: [
     react(),
